@@ -1,5 +1,8 @@
 package util;
 
+import model.Bairro;
+import model.Palheta;
+import model.Regiao;
 import model.Usuario;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -16,6 +19,9 @@ public class HibernateUtil {
             cfg.configure("hibernate.cfg.xml");
 
             cfg.addAnnotatedClass(Usuario.class);
+            cfg.addAnnotatedClass(Palheta.class);
+            cfg.addAnnotatedClass(Bairro.class);
+            cfg.addAnnotatedClass(Regiao.class);
 
             StandardServiceRegistryBuilder registradorServico = new StandardServiceRegistryBuilder();
             registradorServico.applySettings(cfg.getProperties());

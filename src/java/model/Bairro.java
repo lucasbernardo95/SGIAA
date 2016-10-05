@@ -9,6 +9,6 @@ package model;
  *
  * @author lber
  */
-public class Usuario {
+public class Bairro {
     
 }

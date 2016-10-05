@@ -48,9 +48,8 @@ public class GenericDAO<E> {//Recebe um tipo genérico que vai ser interpretado 
             transacao.commit();
         } catch (RuntimeException erro) {
             //Se der algum problema ele será desfeito no rollback em tempo de execução - RuntimeException
-            if (transacao != null) {//verifica se a transação foi aberta != é porque foi aberta
-                transacao.rollback(); //roll back = reverter
-                MessageUtil.MensagemErro(""+erro);
+            if (transacao != null){ //verifica se a transação foi aberta != é porque foi aberta
+                transacao.rollback(); //roll back = reverter           
             }
             /**
              * se a transação for aberta e ele cair no catch é porque deu erro,

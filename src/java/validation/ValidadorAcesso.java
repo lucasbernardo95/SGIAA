@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.validation.constraints.NotNull;
 import model.Usuario;
 import util.SessionUtil;
 import util.ErroSistema;
@@ -46,19 +45,15 @@ public class ValidadorAcesso implements Serializable {
 
         for (Usuario u : usuarios) {
 
-            if (senha.equals(u.getSenha()) && login.equals(u.getLogin())) {
-                //Seta o usuário na sessão
-                SessionUtil.setParamSession("usuario-logado", u);
-                /*seta uma mensagem de boas vindas com o nome do usuário.*/
-                MessageUtil.MensagemSucesso("Seja bem-vindo " + u.getNome());
-                
-                if ("desenvolvedor".equals(u.getTipo())) {
-                    return "/logado/developer/pageDeveloper.xhtml?faces-redirect=true";
-                } else if ("administrador".equals(u.getTipo())) {
-                    return "/logado/admin/gerenciar.xhtml?faces-redirect=true";
-                }
+//            if (senha.equals(u.getSenha()) && login.equals(u.getLogin())) {
+//                //Seta o usuário na sessão
+//                SessionUtil.setParamSession("usuario-logado", u);
+//                /*seta uma mensagem de boas vindas com o nome do usuário.*/
+//                MessageUtil.MensagemSucesso("Seja bem-vindo " + u.getNome());
 
-            }
+                return "/logado/template.xhtml?faces-redirect=true";
+
+//            }
         }
         //Se percorrer todo o laço e não houver nenhum usuário com o login e senha informados informa uma mensagem de erro para o usuário e sai do método
         MessageUtil.MensagemErro("Usuário ou senha inválidos!");
@@ -72,18 +67,17 @@ public class ValidadorAcesso implements Serializable {
      * for, o mesmo será redirecionado para a página contento os dados do
      * software, se não, permanece na página atual.
      */
-    
-        private String url = "";
+    private String url = "";
 
-    public String baixar(){
-        
+    public String baixar() {
+
         return url;
     }
-    
+
     public String getUrl() {
         return url;
     }
-    
+
     public void logarComentar() throws ErroSistema {
 
         /**
@@ -98,11 +92,11 @@ public class ValidadorAcesso implements Serializable {
 
         for (Usuario u : usuarios) {
 
-            if (senha.equals(u.getSenha()) && login.equals(u.getLogin())) {
+            //if (senha.equals(u.getSenha()) && login.equals(u.getLogin())) {
                 //Seta o usuário na sessão
                 SessionUtil.setParamSession("usuario-logado", u);
                 return;
-            }
+            //}
         }
         //Se percorrer todo o laço e não houver nenhum usuário com o login e senha informados informa uma mensagem de erro para o usuário e sai do método
         MessageUtil.MensagemErro("Usuário ou senha inválidos!");
@@ -113,8 +107,8 @@ public class ValidadorAcesso implements Serializable {
         SessionUtil.invalidateSession();
         return "/login.xhtml?faces-redirect=true";
     }
-    
-    public void sair(){
+
+    public void sair() {
         SessionUtil.invalidateSession();
     }
 
