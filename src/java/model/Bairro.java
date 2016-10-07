@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,6 +36,7 @@ public class Bairro implements Serializable {
     @Column(name="taxa_eclusao",length=10,nullable=false)
     private float taxa_eclosao;
     @Column(name="lista_palheta",length=20,nullable=false)
+    @OneToMany
     private List<Palheta> listaPalheta;
     @Column(name="bairro_risco",length=5,nullable=false)
     private int bairro_risco;

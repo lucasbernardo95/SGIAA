@@ -29,6 +29,14 @@ public class Usuario implements Serializable {
     @Column(name="Admin",length=5,nullable=false)
     private boolean adm;
 
+    public Usuario(Integer id, String nome, String cpf, String senha, boolean adm) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.adm = adm;
+    }
+
 
 
     public Usuario() {

@@ -5,11 +5,11 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/SGIAA</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">suelliton</property>
+    <property name="hibernate.connection.password">020221</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
     <property name="hibernate.id.new_generate_maps">true</property>
     <!--Validate vai validar os dados que estão no java antes de fazer qualquer operação no banco-->
-    <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
     <!-- Configurações de debug -->
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>

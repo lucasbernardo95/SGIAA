@@ -1,5 +1,6 @@
 
 import dao.UsuarioDAO;
+import model.Usuario;
 
 import util.ErroSistema;
 
@@ -15,15 +16,15 @@ import util.ErroSistema;
  */
 public class Teste {
     public static void main(String[] args) throws ErroSistema {
-       // Usuario2 usuario = new Usuario2(1, "lucas", "lucas", "lucasbernardo95@gmail.com", "lucasbass", "administrador");
+        Usuario usuario = new Usuario(1, "lucas", "11111111111", "lucasbass", true);
         
         
-       //UsuarioDAO dao = new UsuarioDAO();
-        //dao.merge(usuario);
+       UsuarioDAO dao = new UsuarioDAO();
+        dao.merge(usuario);
         
-        //dao.buscar(1);
+        dao.buscar(1);
         
-     //   System.out.println("Salvou!!!" + usuario.getNome());
+        System.out.println("Salvou!!!" + usuario.getNome());
         
         //Palheta palheta = new Palheta(1);
         //PalhetaDAO pdao = new PalhetaDAO();
