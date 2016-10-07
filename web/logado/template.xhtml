@@ -6,16 +6,44 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>SGIAA</title>
+        <h:outputStylesheet library="css" name="css.css"/>
     </h:head>
-    <h:body>
+    <h:body >
         <h:form>
-            <p:menubar>
-                <p:menuitem value="Home" url="login.xhtml"></p:menuitem>
-                <p:menuitem value="Cadastrar" url="#"></p:menuitem>
-            </p:menubar>
+            <p:megaMenu>
+                <p:submenu label="Consultar regições" icon="ui-icon-gear">
+                    <p:column>
+                        <p:submenu label="Escolha uma região">
+                            <p:menuitem value="Palheta" oncomplete="PF('').show();"></p:menuitem>
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+
+                <p:submenu label="Cadastros" icon="ui-icon-person" >
+                    <p:column>
+                        <p:submenu label="Cadastrar">
+                            <p:menuitem value="Palheta" oncomplete="PF('').show();"></p:menuitem>
+                            <p:menuitem value="Região" oncomplete="PF('').show();"></p:menuitem>
+                            <p:menuitem value="Bairro" oncomplete="PF('').show();"></p:menuitem>
+                            <p:menuitem value="Funcionário" oncomplete="PF('').show();"></p:menuitem>
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+                <p:submenu label="Controle" icon="ui-icon-person" >
+                    <p:column>
+                        <p:submenu label="Opções">
+                            <p:menuitem value="Palhetas" oncomplete="PF('').show();"></p:menuitem>
+                            <p:menuitem value="Bairros" oncomplete="PF('').show();"></p:menuitem>
+                            <p:menuitem value="Regiões" oncomplete="PF('').show();"></p:menuitem>
+                            <p:menuitem value="Funcionários" oncomplete="PF('').show();"></p:menuitem>
+                        </p:submenu>
+                    </p:column>
+                </p:submenu>
+                <p:menuitem value="Sair" url="#" icon="ui-icon-close" />
+                <p:menuitem value="Bem-vindo"/>
+            </p:megaMenu>
         </h:form>
         <hr/>
         <ui:insert></ui:insert>
     </h:body>
 </html>
-

@@ -16,20 +16,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Regiao")
 public class Regiao implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     private Integer id;
+    
     @Column(name="nome",length=10,nullable=false)
     private String nome;
+    
     @Column(name="regiao_risco",length=5,nullable=false)
     private int regiao_risco;
-
 
     //Adicionar atributos    
 
     public Regiao() {
     }
+    
+    
 
     //Adicionar getters e setters
 
