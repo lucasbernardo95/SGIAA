@@ -15,12 +15,15 @@ public abstract class CrudBean<E, D extends GenericDAO> {
     private List<E> entidades;
     
     public void novo() throws InstantiationException, IllegalAccessException {
-        novaEntidade();
+        Class<E> classe = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass())
+                .getActualTypeArguments()[0];
+        entidade = classe.newInstance();  
+        MessageUtil.MensagemSucesso("Criou com sucesso!");    
     }
     
     public void salvar() throws ErroSistema, InstantiationException, IllegalAccessException {  
         getDao().salvar(entidade);
-        novaEntidade();
+        novo();
         MessageUtil.MensagemSucesso("Salvo com sucesso!");      
     }
     
@@ -63,12 +66,5 @@ public abstract class CrudBean<E, D extends GenericDAO> {
      * Resposável por instanciar um objeto DAO do tipo D passado no diamante.
      */
     public abstract D getDao();
-
-    //Cria uma nova entidade de acordo com o tipo passado no diamante.
-    public void novaEntidade() throws InstantiationException, IllegalAccessException{
-        Class<E> classe = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass())
-                .getActualTypeArguments()[0];
-        entidade = classe.newInstance();
-    }
 
 }

@@ -20,6 +20,8 @@ public class ValidadorAcesso implements Serializable {
     UsuarioDAO usuDAO;
     private String login;
     private String senha;
+    private Boolean telaLogin, telaCadastro;
+    
 
     /*Esse método irá fazer a validação do login do usuario.
     Possui uma lista dos usuarios vindos do banco de dados
@@ -109,6 +111,11 @@ public class ValidadorAcesso implements Serializable {
         return "/login.xhtml?faces-redirect=true";
     }
 
+    public void exibeTela(Boolean telaLogin, Boolean telaCadastro){
+        this.telaLogin = telaLogin;
+        this.telaCadastro = telaCadastro;
+    }
+    
     public void sair() {
         SessionUtil.invalidateSession();
     }
@@ -127,6 +134,22 @@ public class ValidadorAcesso implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public Boolean getTelaLogin() {
+        return telaLogin;
+    }
+
+    public void setTelaLogin(Boolean telaLogin) {
+        this.telaLogin = telaLogin;
+    }
+
+    public Boolean getTelaCadastro() {
+        return telaCadastro;
+    }
+
+    public void setTelaCadastro(Boolean telaCadastro) {
+        this.telaCadastro = telaCadastro;
     }
 
 }

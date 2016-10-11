@@ -3,6 +3,7 @@ import dao.UsuarioDAO;
 import model.Usuario;
 
 import util.ErroSistema;
+import view.UsuarioBean;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,17 +16,18 @@ import util.ErroSistema;
  * @author lber
  */
 public class Teste {
-    public static void main(String[] args) throws ErroSistema {
-        Usuario usuario = new Usuario(1, "lucas", "11111111111", "lucasbass", true);
+    public static void main(String[] args) throws ErroSistema, InstantiationException, IllegalAccessException {
+        Usuario usuario = new Usuario("elidiel","elidiel", "12345678978", "elidielpegador");
         
+        UsuarioBean ubean = new UsuarioBean();
         
-       UsuarioDAO dao = new UsuarioDAO();
-        dao.merge(usuario);
+        ubean.setEntidade(usuario);
         
-        dao.buscar(1);
+       ubean.salvar();
+        
         
         System.out.println("Salvou!!!" + usuario.getNome());
-        
+//        
         //Palheta palheta = new Palheta(1);
         //PalhetaDAO pdao = new PalhetaDAO();
         //pdao.merge(palheta);

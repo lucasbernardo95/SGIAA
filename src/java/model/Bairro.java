@@ -27,22 +27,35 @@ public class Bairro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    
     @Column(name="nome",length=25,nullable=false)    
     private String nome;
+    
     @Column(name="total_ovos",length=10,nullable=false)  
     private int  total_ovos;
+    
     @Column(name="total_larvas",length=10,nullable=false)
     private int total_larvas;
+    
     @Column(name="taxa_eclusao",length=10,nullable=false)
     private float taxa_eclosao;
+    
     @Column(name="lista_palheta",length=20,nullable=false)
     @OneToMany
     private List<Palheta> listaPalheta;
+    
     @Column(name="bairro_risco",length=5,nullable=false)
     private int bairro_risco;
-    
-    
 
+    public Bairro(String nome, int total_ovos, int total_larvas, float taxa_eclosao, List<Palheta> listaPalheta, int bairro_risco) {
+        this.nome = nome;
+        this.total_ovos = total_ovos;
+        this.total_larvas = total_larvas;
+        this.taxa_eclosao = taxa_eclosao;
+        this.listaPalheta = listaPalheta;
+        this.bairro_risco = bairro_risco;
+    }
+    
     public Bairro() {
     }
 

@@ -20,21 +20,26 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    
     @Column(name="nome",length=30,nullable=false)
     private String nome;
+    
+    @Column(name="login",length=30,nullable=false)
+    private String login;
+    
     @Column(name="cpf",length=14,nullable=false)
     private String cpf;  
+    
     @Column(name="senha",length=10,nullable=false)
     private String senha;
-    @Column(name="Admin",length=5,nullable=false)
-    private boolean adm;
+    
 
-    public Usuario(Integer id, String nome, String cpf, String senha, boolean adm) {
-        this.id = id;
+
+    public Usuario( String nome, String login, String cpf, String senha) {
         this.nome = nome;
         this.cpf = cpf;
+        this.login = login;
         this.senha = senha;
-        this.adm = adm;
     }
 
 
@@ -72,19 +77,15 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }    
+
+    public String getLogin() {
+        return login;
     }
 
-    public boolean isAdm() {
-        return adm;
+    public void setLogin(String login) {
+        this.login = login;
     }
-
-    public void setAdm(boolean adm) {
-        this.adm = adm;
-    }
-
-    
-
-    
 
     @Override
     public int hashCode() {
