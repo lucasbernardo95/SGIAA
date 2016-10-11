@@ -20,3 +20,4 @@ public class RegiaoBean extends CrudBean<RegiaoBean, RegiaoDAO> implements Seria
     }
     
 }
+//
