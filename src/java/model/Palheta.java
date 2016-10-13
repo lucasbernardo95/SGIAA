@@ -18,23 +18,37 @@ import javax.validation.constraints.Digits;
 @Table(name="Palheta")
 public class Palheta implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    
     @Column(name="coordenada_x",length=10,nullable=false)    
     private float coordenada_x ;
+    
     @Column(name="coordenada_y",length=10,nullable=false)
     private float coordenada_y ;
+    
     @Column(name="ovos_palheta",length=5,nullable=false)
     private int ovos_palheta ;
+    
     @Column(name="eclosao_palheta",length=5,nullable=false)
     private int eclosao_palheta;
+    
     @Column(name="ipo",length=5,nullable=false)
     private float ipo;
+    
     @Column(name="ido",length=5,nullable=false)
     private float ido;
-  
-    
+
+    public Palheta(float coordenada_x, float coordenada_y, int ovos_palheta, int eclosao_palheta, float ipo, float ido) {
+        this.coordenada_x = coordenada_x;
+        this.coordenada_y = coordenada_y;
+        this.ovos_palheta = ovos_palheta;
+        this.eclosao_palheta = eclosao_palheta;
+        this.ipo = ipo;
+        this.ido = ido;
+    }
 
     public Palheta() {
     }

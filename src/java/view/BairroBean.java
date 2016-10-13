@@ -12,15 +12,18 @@ import model.Bairro;
  */
 @ManagedBean
 @ApplicationScoped
-public class BairroBean extends CrudBean<Bairro, BairroDAO> implements Serializable {
+public class BairroBean implements Serializable {
 
     private BairroDAO bdao;
     
-    @Override
     public BairroDAO getDao() {
         if(bdao == null)
             bdao = new BairroDAO();
         return bdao;
+    }
+
+    public Bairro getNovaEntidade() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

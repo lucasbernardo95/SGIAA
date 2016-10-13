@@ -8,15 +8,18 @@ import model.Palheta;
  *
  * @author lber
  */
-public class PalhetaBean extends CrudBean<Palheta, PalhetaDAO> implements Serializable {
+public class PalhetaBean implements Serializable {
 
     private PalhetaDAO pdao;
     
-    @Override
     public PalhetaDAO getDao() {
        if(pdao == null)
            pdao = new PalhetaDAO();
        return pdao;
+    }
+
+    public Palheta getNovaEntidade() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
