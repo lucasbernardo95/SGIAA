@@ -5,10 +5,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 
 /**
  *
@@ -20,14 +18,14 @@ public class Palheta implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Integer id;
     
     @Column(name="coordenada_x",length=10,nullable=false)    
-    private float coordenada_x ;
+    private int coordenada_x ;
     
     @Column(name="coordenada_y",length=10,nullable=false)
-    private float coordenada_y ;
+    private int coordenada_y ;
     
     @Column(name="ovos_palheta",length=5,nullable=false)
     private int ovos_palheta ;
@@ -36,12 +34,12 @@ public class Palheta implements Serializable {
     private int eclosao_palheta;
     
     @Column(name="ipo",length=5,nullable=false)
-    private float ipo;
+    private double ipo;
     
     @Column(name="ido",length=5,nullable=false)
-    private float ido;
+    private double ido;
 
-    public Palheta(float coordenada_x, float coordenada_y, int ovos_palheta, int eclosao_palheta, float ipo, float ido) {
+    public Palheta(int coordenada_x, int coordenada_y, int ovos_palheta, int eclosao_palheta, double ipo, double ido) {
         this.coordenada_x = coordenada_x;
         this.coordenada_y = coordenada_y;
         this.ovos_palheta = ovos_palheta;
@@ -61,19 +59,19 @@ public class Palheta implements Serializable {
         this.id = id;
     }
 
-    public float getCoordenada_x() {
+    public int getCoordenada_x() {
         return coordenada_x;
     }
 
-    public void setCoordenada_x(float coordenada_x) {
+    public void setCoordenada_x(int coordenada_x) {
         this.coordenada_x = coordenada_x;
     }
 
-    public float getCoordenada_y() {
+    public int getCoordenada_y() {
         return coordenada_y;
     }
 
-    public void setCoordenada_y(float coordenada_y) {
+    public void setCoordenada_y(int coordenada_y) {
         this.coordenada_y = coordenada_y;
     }
 
@@ -93,19 +91,19 @@ public class Palheta implements Serializable {
         this.eclosao_palheta = eclosao_palheta;
     }
 
-    public float getIpo() {
+    public double getIpo() {
         return ipo;
     }
 
-    public void setIpo(float ipo) {
+    public void setIpo(double ipo) {
         this.ipo = ipo;
     }
 
-    public float getIdo() {
+    public double getIdo() {
         return ido;
     }
 
-    public void setIdo(float ido) {
+    public void setIdo(double ido) {
         this.ido = ido;
     }
 

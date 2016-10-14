@@ -1,16 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             template="template.xhtml">
+    <h:form>
+        <p:growl autoUpdate="true" />
+        <p:dock position="bottom">   
+            <p:menuitem value="Login" icon="/resources/img/home.png"  url="#"/>
+            <p:menuitem value="Buscar" icon="/resources/img/search.png"  url="#"/>
+            <p:menuitem value="Zonas de risco" icon="/resources/img/radar.png"  url="#"/>
+        </p:dock>
+
+        <p:dataTable value="#{palhetaBean.lista}" var="palheta" id="palhetas" widgetVar="cellUsuario"
+                     paginator="true" rows="10" editable="true" paginatorPosition="top">
+
+            <p:column headerText="Código" sortBy="#{palheta.id}" filterBy="#{palheta.id}" width="7%">
+                <h:outputText value="#{palheta.id}"></h:outputText>
+            </p:column>
+            <p:column headerText="Coordenada X" sortBy="#{palheta.coordenada_x}" filterBy="#{palheta.coordenada_x}" width="7%">
+                <h:outputText value="#{palheta.coordenada_x}"></h:outputText>
+            </p:column>
+            <p:column headerText="Coordenada Y" sortBy="#{palheta.coordenada_x}" filterBy="#{palheta.coordenada_x}" width="7%">
+                <h:outputText value="#{palheta.coordenada_x}"></h:outputText>
+            </p:column>
+            <p:column headerText="Índice de eclosão" sortBy="#{palheta.eclosao_palheta}" filterBy="#{palheta.eclosao_palheta}" width="7%">
+                <h:outputText value="#{palheta.eclosao_palheta}"></h:outputText>
+            </p:column>
+            <p:column headerText="IDO" sortBy="#{palheta.ido}" filterBy="#{palheta.ido}" width="7%">
+                <h:outputText value="#{palheta.ido}"></h:outputText>
+            </p:column>
+            <p:column headerText="IDO" sortBy="#{palheta.ido}" filterBy="#{palheta.ido}" width="7%">
+                <h:outputText value="#{palheta.ido}"></h:outputText>
+            </p:column>
+            <p:column headerText="IPO" sortBy="#{palheta.ipo}" filterBy="#{palheta.ipo}" width="7%">
+                <h:outputText value="#{palheta.ipo}"></h:outputText>
+            </p:column>
+            <p:column headerText="Quantidade de ovos" sortBy="#{palheta.ovos_palheta}" filterBy="#{palheta.ovos_palheta}" width="7%">
+                <h:outputText value="#{palheta.ovos_palheta}"></h:outputText>
+            </p:column>
+        </p:dataTable>
+        </h:form>
+
+</ui:decorate>

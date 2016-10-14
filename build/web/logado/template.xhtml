@@ -3,45 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>SGIAA</title>
         <h:outputStylesheet library="css" name="css.css"/>
     </h:head>
     <h:body >
         <h:form>
-            <p:megaMenu>
-                <p:submenu label="Consultar regições" icon="ui-icon-gear">
-                    <p:column>
-                        <p:submenu label="Escolha uma região">
-                            <p:menuitem value="Palheta" oncomplete="PF('').show();"></p:menuitem>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
+            <p:menubar>
+                <p:menuitem value="Palheta" url="palheta.xhtml" icon="fa fa-th" actionListener ="#{palhetaBean.buscar()}"></p:menuitem>
+                <p:menuitem value="Bairro" url="bairro.xhtml" icon="fa fa-location-arrow" actionListener="#{bairroBean.buscar()}"></p:menuitem>
+                <p:menuitem value="Regiao" url="regiao.xhtml" icon="fa fa-map-marker" actionListener ="#{regiaoBean.buscar()}"></p:menuitem>
+                <p:menuitem value="Configurações" url="config.xhtml" icon="fa fa-cogs"></p:menuitem>
+                <p:menuitem value="Meus dados" url="dados.xhtml" icon="fa fa-book"></p:menuitem>
+                <p:menuitem value="..Sair" url="#" icon="fa fa-user-times" />
+                <p:menuitem value="Bem-vindo 'fulano'" icon="fa fa-user"/>
+            </p:menubar>
 
-                <p:submenu label="Cadastros" icon="ui-icon-person" >
-                    <p:column>
-                        <p:submenu label="Cadastrar">
-                            <p:menuitem value="Palheta" oncomplete="PF('').show();"></p:menuitem>
-                            <p:menuitem value="Região" oncomplete="PF('').show();"></p:menuitem>
-                            <p:menuitem value="Bairro" oncomplete="PF('').show();"></p:menuitem>
-                            <p:menuitem value="Funcionário" oncomplete="PF('').show();"></p:menuitem>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
-                <p:submenu label="Controle" icon="ui-icon-person" >
-                    <p:column>
-                        <p:submenu label="Opções">
-                            <p:menuitem value="Palhetas" oncomplete="PF('').show();"></p:menuitem>
-                            <p:menuitem value="Bairros" oncomplete="PF('').show();"></p:menuitem>
-                            <p:menuitem value="Regiões" oncomplete="PF('').show();"></p:menuitem>
-                            <p:menuitem value="Funcionários" oncomplete="PF('').show();"></p:menuitem>
-                        </p:submenu>
-                    </p:column>
-                </p:submenu>
-                <p:menuitem value="Sair" url="#" icon="ui-icon-close" />
-                <p:menuitem value="Bem-vindo"/>
-            </p:megaMenu>
+            
         </h:form>
         <hr/>
         <ui:insert></ui:insert>

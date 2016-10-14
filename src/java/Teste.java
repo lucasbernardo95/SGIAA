@@ -1,5 +1,9 @@
 
+import dao.PalhetaDAO;
+import dao.RegiaoDAO;
 import dao.UsuarioDAO;
+import model.Palheta;
+import model.Regiao;
 import model.Usuario;
 
 import util.ErroSistema;
@@ -31,5 +35,14 @@ public class Teste {
         //Palheta palheta = new Palheta(1);
         //PalhetaDAO pdao = new PalhetaDAO();
         //pdao.merge(palheta);
+        
+//        Palheta palheta = new Palheta(1221, 212, 1212, 123, 112.9, 11212.7);
+//        PalhetaDAO pdao= new PalhetaDAO();
+//        pdao.salvar(palheta);
+
+        Regiao r = new Regiao( "duda", 123);
+        RegiaoDAO rd = new  RegiaoDAO();
+        rd.salvar(r);
+
     }
 }

@@ -17,7 +17,7 @@ import util.MessageUtil;
  */
 @ManagedBean
 @SessionScoped
-public class UsuarioBean implements Serializable {
+public class UsuarioBean implements Serializable, CrudBean {
 
     private UsuarioDAO udao;
     private Usuario usuario;
@@ -50,11 +50,13 @@ public class UsuarioBean implements Serializable {
         this.usuario = usuario;
     }
 
+    @Override
     public void novo() {
         usuario = new Usuario();
     }
 
-     public void salvar() {
+    @Override
+    public void salvar() {
         try {
             if (!usuario.getNome().equals("") && !usuario.getLogin().equals("")
                     && !usuario.getSenha().equals("") && !usuario.getCpf().equals("")) {
@@ -69,6 +71,7 @@ public class UsuarioBean implements Serializable {
         }
     }
 
+    @Override
     public void alterar() {
         try {
             if (!usuario.getNome().equals("") && !usuario.getLogin().equals("")
@@ -84,6 +87,7 @@ public class UsuarioBean implements Serializable {
         }
     }
 
+    @Override
     public void excluir() {
         try {
             if (usuario != null) {
@@ -97,6 +101,7 @@ public class UsuarioBean implements Serializable {
         }
     }
 
+    @Override
     public void buscar() {
         try {
             getDao().listar();

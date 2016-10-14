@@ -33,6 +33,11 @@ public class Regiao implements Serializable {
 
     public Regiao() {
     }
+
+    public Regiao( String nome, int regiao_risco) {
+        this.nome = nome;
+        this.regiao_risco = regiao_risco;
+    }
     
     
 
