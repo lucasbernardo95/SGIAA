@@ -60,9 +60,9 @@ public class BairroBean implements Serializable, CrudBean {
     @Override
     public void buscar() {
         try {
-            getDao().listar();
+            lista = getDao().listar();
         } catch (ErroSistema ex) {
-            MessageUtil.MensagemPerigo("Erro ao preencher a tabela.\nCausa: " + ex);
+            MessageUtil.MensagemPerigo("Erro ao preencher a tabela.");
         }
     }
 
