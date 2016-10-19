@@ -23,7 +23,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Bairro")
 public class Bairro implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -47,12 +49,11 @@ public class Bairro implements Serializable {
     @Column(name="bairro_risco",length=5,nullable=false)
     private int bairro_risco;
 
-    public Bairro(String nome, int total_ovos, int total_larvas, float taxa_eclosao, List<Palheta> listaPalheta, int bairro_risco) {
+    public Bairro(String nome, int total_ovos, int total_larvas, float taxa_eclosao, int bairro_risco) {
         this.nome = nome;
         this.total_ovos = total_ovos;
         this.total_larvas = total_larvas;
         this.taxa_eclosao = taxa_eclosao;
-        this.listaPalheta = listaPalheta;
         this.bairro_risco = bairro_risco;
     }
     

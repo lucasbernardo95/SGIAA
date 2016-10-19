@@ -22,18 +22,19 @@ public class BairroBean implements Serializable, CrudBean {
 
     private BairroDAO bdao;
     private List<Bairro> lista;
-    
+
     public BairroDAO getDao() {
-        if(bdao == null)
+        if (bdao == null) {
             bdao = new BairroDAO();
+        }
         return bdao;
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         buscar();
     }
-    
+
     public List<Bairro> getLista() {
         return lista;
     }

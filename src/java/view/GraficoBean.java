@@ -1,96 +1,69 @@
-
 package view;
 
-
- 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
+import model.Bairro;
+
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.LineChartSeries;
- 
+import org.primefaces.model.chart.HorizontalBarChartModel;
+import org.primefaces.model.chart.MeterGaugeChartModel;
+import util.MessageUtil;
+
 @ManagedBean
+@SessionScoped
 public class GraficoBean implements Serializable {
- 
-    private LineChartModel grafico;
-    
+
+    private MeterGaugeChartModel meterGaugeMode;
+
     @ManagedProperty(value = "#{bairroBean}")
     private BairroBean bbean;
-   
-     
-    @PostConstruct
-    public void init() {
-        createLineModels();
+
+    public void mostraBairroPorRisco(ActionEvent evento) {
+        Bairro b = (Bairro) evento.getComponent().getAttributes().get("bairroEscolhido");
+
+        createMeterGaugeModels(b);
     }
- 
-    public LineChartModel getGrafico() {
-        return grafico;
+
+    private MeterGaugeChartModel initMeterGaugeModel(Bairro b) {
+        List<Number> intervals = new ArrayList<Number>() {
+            {//Aqui insere os gruas de risco no caso, será de 1 à 5 até que a rede fique pronta e mude de 1 à 3
+                add(1);
+                add(2);
+                add(3);
+                add(4);
+                add(5);
+            }
+        };
+        //retorna um novo MeterGaugeChartModel passando o valor onde o ponteiro ficará getBairro_risco e o intervalo criado intervals
+        return new MeterGaugeChartModel(b.getBairro_risco(), intervals);
     }
- 
-   
-    private void createLineModels() {
-        grafico = initLinearModel();
-        grafico.setTitle("Grafico");
-        grafico.setLegendPosition("e");
-        Axis yAxis = grafico.getAxis(AxisType.Y);
-        yAxis.setMin(0);
-        yAxis.setMax(10);       
-       
-        yAxis.setLabel("Births");
-      
+
+    private void createMeterGaugeModels(Bairro b) {
+
+        meterGaugeMode = initMeterGaugeModel(b);
+        meterGaugeMode.setTitle("Grau de risco de " + b.getNome());
+        meterGaugeMode.setSeriesColors("FFA07A,FF6347,8B0000,CD0000, FF0000");//depois tem que diminuir para três cores
+        meterGaugeMode.setGaugeLabelPosition("bottom");
+        meterGaugeMode.setShowTickLabels(false);
+        meterGaugeMode.setLabelHeightAdjust(110);
+        meterGaugeMode.setIntervalOuterRadius(100);
     }
-     
-    private LineChartModel initLinearModel() {
-        LineChartModel model = new LineChartModel();
- 
-        LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Series 1");
- 
-        series1.set(1, 2);
-        series1.set(2, 1);
-        series1.set(3, 3);
-        series1.set(4, 6);
-        series1.set(5, 8);
- 
-        LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Series 2");
- 
-        series2.set(1, 6);
-        series2.set(2, 3);
-        series2.set(3, 2);
-        series2.set(4, 7);
-        series2.set(5, 9);
- 
-        model.addSeries(series1);
-        model.addSeries(series2);
-         
-        return model;
+
+    public MeterGaugeChartModel getMeterGaugeMode() {
+        return meterGaugeMode;
     }
-     
-    private LineChartModel initCategoryModel() {
-        LineChartModel model = new LineChartModel();
- 
-        ChartSeries boys = new ChartSeries();
-        boys.setLabel("Boys");
-        bbean.buscar();
-        boys.set(bbean.getLista(), 1);
- 
-        ChartSeries girls = new ChartSeries();
-        girls.setLabel("Girls");
-        girls.set("2004", 52);
-        girls.set("2005", 60);
-        girls.set("2006", 110);
-        girls.set("2007", 90);
-        girls.set("2008", 120);
- 
-        model.addSeries(boys);
-        model.addSeries(girls);
-         
-        return model;
+
+    public void setMeterGaugeMode(MeterGaugeChartModel meterGaugeMode) {
+        this.meterGaugeMode = meterGaugeMode;
     }
 
     public BairroBean getBbean() {
@@ -100,5 +73,5 @@ public class GraficoBean implements Serializable {
     public void setBbean(BairroBean bbean) {
         this.bbean = bbean;
     }
- 
+
 }

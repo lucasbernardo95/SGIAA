@@ -6,7 +6,7 @@
              xmlns:p="http://primefaces.org/ui"
              xmlns:f="http://xmlns.jcp.org/jsf/core"
              template="template.xhtml">
-    <h:form>
+    <h:form id="fbairro">
         <p:growl autoUpdate="true" />
         <p:dock position="bottom">   
             <p:menuitem value="Login" icon="/resources/img/home.png"  url="#"/>
@@ -17,8 +17,12 @@
         <p:dataTable value="#{bairroBean.lista}" var="bairro" id="bairro" widgetVar="cellUsuario"
                      paginator="true" rows="10" editable="true" paginatorPosition="top">
 
-            <p:column headerText="Código" sortBy="#{bairro.id}" filterBy="#{bairro.id}" width="7%">
-                <h:outputText value="#{bairro.id}"></h:outputText>
+            <p:column headerText="Opções" width="7%">
+                <p:commandButton value="Gráfico" actionListener="#{graficoBean.mostraBairroPorRisco}" 
+                                 oncomplete="PF('diagrisco').show();"
+                                 update="fbairro">
+                    <f:attribute name="bairroEscolhido" value="#{bairro}" />
+                </p:commandButton>
             </p:column>
             <p:column headerText="Nome" sortBy="#{bairro.nome}" filterBy="#{bairro.nome}" width="7%">
                 <h:outputText value="#{bairro.nome}"></h:outputText>
@@ -35,10 +39,17 @@
             <p:column headerText="Bairro_risco" sortBy="#{bairro.bairro_risco}" filterBy="#{bairro.bairro_risco}" width="7%">
                 <h:outputText value="#{bairro.bairro_risco}"></h:outputText>
             </p:column>
-           
+
         </p:dataTable>
-        </h:form>
-        
-        <p:chart type="line" model="#{graficoBean.grafico}" style="height:300px;"/>
-        
+        <p:dialog header="Grau de risco" widgetVar="diagrisco" showEffect="explode" 
+                  height="50%" width="50%" resizable="false">
+
+            <p:chart type="metergauge" model="#{graficoBean.meterGaugeMode}" style="width:400px;height:250px" rendered="#{graficoBean.meterGaugeMode ne null}"/>
+            <p:commandButton value="Fechar" oncomplete="PF('diagrisco').hide();" update="fbairro" />
+        </p:dialog>
+    </h:form>
+
+
+
+
 </ui:decorate>

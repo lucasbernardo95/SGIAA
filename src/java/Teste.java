@@ -1,13 +1,9 @@
 
-import dao.PalhetaDAO;
-import dao.RegiaoDAO;
-import dao.UsuarioDAO;
-import model.Palheta;
-import model.Regiao;
-import model.Usuario;
+import dao.BairroDAO;
+import java.util.List;
+import model.Bairro;
 
 import util.ErroSistema;
-import view.UsuarioBean;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,9 +36,13 @@ public class Teste {
 //        PalhetaDAO pdao= new PalhetaDAO();
 //        pdao.salvar(palheta);
 
-        Regiao r = new Regiao( "duda", 123);
-        RegiaoDAO rd = new  RegiaoDAO();
-        rd.salvar(r);
+
+        BairroDAO bdao = new BairroDAO();
+
+        for (int i = 0; i < 23; i++){
+            Bairro b = new Bairro("Bairro autom. 1", 20 + i, 30 + i, (float) (14.0 + i), 40 + i);
+            bdao.salvar(b);
+        }
 
     }
 }
