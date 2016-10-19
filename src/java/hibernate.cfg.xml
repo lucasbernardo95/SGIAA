@@ -2,16 +2,19 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
+      <!-- parâmetros de conexão: driver, url, dialect, usuário e senha -->
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/SGIAA?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">020221</property>
+    
     <!--<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/SGIAA</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">postgres</property>-->
+    
     <property name="hibernate.id.new_generate_maps">false</property>
     <property name="hibernate.connection.pool_size">1</property>
     <!--Validate vai validar os dados que estão no java antes de fazer qualquer operação no banco-->
@@ -21,6 +24,7 @@
     <property name="format_sql">true</property>
     <property name="generate_statistics">true</property>
     <property name="use_sql_comments"/>
+    <!-- Mapeamento dos modelos -->
     <mapping class="model.Usuario"/>
     <mapping class="model.Bairro"/>
     <mapping class="model.Palheta"/>
