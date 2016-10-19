@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import model.Palheta;
+import org.primefaces.event.RowEditEvent;
 import util.ErroSistema;
 import util.MessageUtil;
 
@@ -48,6 +49,7 @@ public class PalhetaBean implements Serializable, CrudBean {
             if (palheta != null) {
                 getDao().salvar(palheta);
                 MessageUtil.MensagemSucesso("Salvo com sucesso.");
+                buscar();
             } else {
                 MessageUtil.MensagemErro("Erro ao tentar salvar!");
             }
@@ -87,6 +89,15 @@ public class PalhetaBean implements Serializable, CrudBean {
         } catch (ErroSistema ex) {
             Logger.getLogger(PalhetaBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void atualizar(RowEditEvent evento) throws ErroSistema {
+        this.palheta = (Palheta) evento.getObject();//recupera o objeto vindo no evento
+        alterar();
+    }
+
+    public void cancelar(RowEditEvent evento) {
+        MessageUtil.MensagemErro("Edição cancelada!");
     }
 
     public Palheta getPalheta() {
