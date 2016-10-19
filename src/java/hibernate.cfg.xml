@@ -22,8 +22,8 @@
     <property name="generate_statistics">true</property>
     <property name="use_sql_comments"/>
     <mapping class="model.Usuario"/>
-    <mapping class="model.Cliente"/>
-    <mapping class="model.Produto"/>
-    <mapping class="model.Venda"/>
+    <mapping class="model.Bairro"/>
+    <mapping class="model.Palheta"/>
+    <mapping class="model.Regiao"/>
   </session-factory>
 </hibernate-configuration>
