@@ -32,7 +32,7 @@ public class Usuario implements Serializable {
     
     @Column(name="senha",length=10,nullable=false)
     private String senha;
-    
+   
 
 
     public Usuario( String nome, String login, String cpf, String senha) {

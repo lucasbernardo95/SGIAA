@@ -56,6 +56,7 @@ public class GraficoBean implements Serializable {
         meterGaugeMode.setShowTickLabels(false);
         meterGaugeMode.setLabelHeightAdjust(110);
         meterGaugeMode.setIntervalOuterRadius(100);
+        
     }
 
     public MeterGaugeChartModel getMeterGaugeMode() {

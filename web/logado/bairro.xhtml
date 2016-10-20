@@ -14,18 +14,26 @@
             <p:menuitem value="Zonas de risco" icon="/resources/img/radar.png"  url="#"/>
         </p:dock>
 
-        <p:dataTable value="#{bairroBean.lista}" var="bairro" id="bairro" widgetVar="cellUsuario"
+        <p:dataTable value="#{bairroBean.lista}" var="bairro" id="bairros" widgetVar="cellUsuario"
                      paginator="true" rows="10" editable="true" paginatorPosition="top">
 
-            <p:column headerText="Opções" width="7%">
-                <p:commandButton value="Gráfico" actionListener="#{graficoBean.mostraBairroPorRisco}" 
+            <f:facet name="header">
+                <p:commandButton value="Novo" oncomplete="PF('cadastro').show();"/>
+            </f:facet>
+            
+            <p:ajax event="rowEdit" listener="#{bairroBean.atualizar}" update="fbairro bairros "/>
+            <p:ajax event="rowEditCancel" listener="#{bairroBean.cancelar}" update="fbairro bairros "/>
+
+           
+            <p:column headerText="Nome" sortBy="#{bairro.nome}" filterBy="#{bairro.nome}" width="7%">
+                <h:outputText value="#{bairro.nome}"></h:outputText>
+            </p:column>
+             <p:column headerText="Opções" width="7%">
+                 <p:commandButton  value="Ver Gráfico" actionListener="#{graficoBean.mostraBairroPorRisco}" 
                                  oncomplete="PF('diagrisco').show();"
                                  update="fbairro">
                     <f:attribute name="bairroEscolhido" value="#{bairro}" />
                 </p:commandButton>
-            </p:column>
-            <p:column headerText="Nome" sortBy="#{bairro.nome}" filterBy="#{bairro.nome}" width="7%">
-                <h:outputText value="#{bairro.nome}"></h:outputText>
             </p:column>
             <p:column headerText="Total_ovos" sortBy="#{bairro.total_ovos}" filterBy="#{bairro.total_ovos}" width="7%">
                 <h:outputText value="#{bairro.total_ovos}"></h:outputText>
@@ -41,6 +49,28 @@
             </p:column>
 
         </p:dataTable>
+        
+        <p:dialog header="Cadastro" widgetVar="cadastro" showEffect="explode" 
+                  height="50%" width="50%" resizable="false">
+            <p:panelGrid columns="2" >
+                <p:outputLabel value="Nome"/>
+                <p:inputText  value="#{bairroBean.bairro.nome}"/>
+                <p:outputLabel value="Total ovos "/>
+                <p:inputNumber value="#{bairroBean.bairro.total_ovos}"/>
+                <p:outputLabel value="Total larvas"/>
+                <p:inputNumber value="#{bairroBean.bairro.total_larvas}"/>
+                <p:outputLabel value="Taxa de eclusão"/>
+                <p:inputNumber value="#{bairroBean.bairro.taxa_eclosao}"/>
+                <p:outputLabel value="Risco do bairro"/>
+                <p:inputNumber value="#{bairroBean.bairro.bairro_risco}"/>                
+                <p:commandButton value="Salvar" actionListener="#{bairroBean.salvar()}" update="bairros" />
+            </p:panelGrid>
+        </p:dialog>
+        
+        
+        
+        
+        
         <p:dialog header="Grau de risco" widgetVar="diagrisco" showEffect="explode" 
                   height="50%" width="50%" resizable="false">
 

@@ -66,6 +66,10 @@ public class Regiao implements Serializable {
     public void setRegiao_risco(int regiao_risco) {
         this.regiao_risco = regiao_risco;
     }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
    
 
     @Override
