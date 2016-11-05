@@ -24,7 +24,7 @@
     
     <context-param>  
         <param-name>primefaces.THEME</param-name>  
-        <param-value>redmond</param-value>  
+        <param-value>hot-sneaks</param-value>  
     </context-param>  
     <!--Altera o comportamento padrão do jsf para reconhecer campos de textos como null-->
     <context-param>
