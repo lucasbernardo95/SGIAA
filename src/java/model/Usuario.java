@@ -14,35 +14,33 @@ import javax.persistence.Table;
  * @author lber
  */
 @Entity
-@Table(name="Usuario")
+@Table(name = "Usuario")
 public class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
-    @Column(name="nome",length=30,nullable=false)
+
+    @Column(name = "nome", length = 30, nullable = false)
     private String nome;
-    
-    @Column(name="login",length=30,nullable=false)
+
+    @Column(name = "login", length = 30, nullable = false)
     private String login;
-    
-    @Column(name="cpf",length=14,nullable=false)
-    private String cpf;  
-    
-    @Column(name="senha",length=10,nullable=false)
+
+    @Column(name = "cpf", length = 14, nullable = false)
+    private String cpf;
+
+    @Column(name = "senha", length = 10, nullable = false)
     private String senha;
-   
 
-
-    public Usuario( String nome, String login, String cpf, String senha) {
+    public Usuario(String nome, String login, String cpf, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.login = login;
         this.senha = senha;
     }
-
-
 
     public Usuario() {
     }
@@ -77,7 +75,7 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }    
+    }
 
     public String getLogin() {
         return login;

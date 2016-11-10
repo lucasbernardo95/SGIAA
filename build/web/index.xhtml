@@ -9,24 +9,39 @@
     <h:head>
         <title>SGIAA</title>
     </h:head>
-    <h:body onload="PF('login').show();">
-      <h:form id="index">
-           
+    <h:body onload="#{usuarioBean.init()}">
+        <h:form id="index">
+
             <p:growl autoUpdate="true"/>
-            <p:dialog  id="login" header="Cadastro de usuário" widgetVar="login"
-                       height="50%" width="30%" resizable="false">
-                <p:panelGrid columns="2" >
-                    <p:outputLabel value="Login"/>
-                    <p:inputText value="#{validador.login}"/>
 
-                    <p:outputLabel value="Senha"/>
-                    <p:inputText value="#{validador.senha}"/>
+            <p:panelGrid columns="2" >
+                <p:outputLabel value="Login"/>
+                <p:inputText value="#{validador.login}"/>
 
-                    <p:commandButton value="Entrar" action="#{validador.autenticar()}" update=":index"/>
-                    <p:outputLabel />
-                </p:panelGrid>
-            </p:dialog>
-            
+                <p:outputLabel value="Senha"/>
+                <p:password value="#{validador.senha}"/>
+
+                <p:outputLabel />
+                <p:commandButton value="Entrar" action="#{validador.autenticar()}" update=":index"/>
+                
+            </p:panelGrid>
+            <p:panelGrid columns="2" >
+                <p:outputLabel value="Nome"/>
+                <p:inputText value="#{usuarioBean.usuario.nome}"/>
+
+                <p:outputLabel value="CPF"/>
+                <p:inputMask mask="999.999.999-99" value="#{usuarioBean.usuario.cpf}"/>
+                
+                <p:outputLabel value="Login"/>
+                <p:inputText value="#{usuarioBean.usuario.login}"/>
+
+                <p:outputLabel value="Senha"/>
+                <p:password value="#{usuarioBean.usuario.senha}"/>
+                
+                <p:outputLabel />
+                <p:commandButton value="Cadastrar" action="#{usuarioBean.salvar()}" update=":index"/>
+                
+            </p:panelGrid>
 
         </h:form>
     </h:body>

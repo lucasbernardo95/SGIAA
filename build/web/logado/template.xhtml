@@ -18,8 +18,8 @@
                 <p:menuitem value="Meus dados" url="dados.xhtml" icon="fa fa-book"></p:menuitem>                
                 <p:menuitem value="Cadastrar usuários"  oncomplete="PF('cadastro').show();" />
                
-                <p:menuitem value="Sair" url="#" icon="fa fa-user-times"  />
-                <p:menuitem value="Olá 'fulano'" icon="fa fa-user"/>
+                <p:menuitem value="Sair" action="#{validador.logout()}" icon="fa fa-user-times"  />
+                <p:menuitem value="Olá #{sessionScope['usuario-logado'].nome}" icon="fa fa-user"/>
             </p:menubar>
 
             <p:dialog  id="cadastro" header="Cadastro de usuário" widgetVar="cadastro"
