@@ -38,7 +38,7 @@ public class FilterAccess implements Filter {
         // se o usuário for nulo, o mesmo será redirécionado para login
         if (u == null) { 
             String contextPath = ((HttpServletRequest) req).getContextPath();
-            ((HttpServletResponse) res).sendRedirect(contextPath + "/login.xhtml");
+            ((HttpServletResponse) res).sendRedirect(contextPath + "/index.xhtml");
         } else {
             chain.doFilter(req, res);
         }

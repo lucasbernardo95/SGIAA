@@ -24,12 +24,18 @@
             <p:ajax event="rowEdit" listener="#{regiaoBean.atualizar}" update="fregiao regioes"/>
             <p:ajax event="rowEditCancel" listener="#{regiaoBean.cancelar}" update="fregiao regioes"/>
             
-            
+            <p:column headerText="Opções" width="7%">
+                <p:rowEditor style="float: left;" />
+                <p:commandButton value="Excluir" actionListener="#{regiaoBean.excluir()}" update="fregiao regioes"/>
+            </p:column>
             <p:column headerText="Código" sortBy="#{regiao.id}" filterBy="#{regiao.id}" width="7%">
                 <h:outputText value="#{regiao.id}"></h:outputText>
             </p:column>
             <p:column headerText="Região" sortBy="#{regiao.nome}" filterBy="#{regiao.nome}" width="7%">
-                <h:outputText value="#{regiao.nome}"></h:outputText>
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{regiao.nome}"></h:outputText></f:facet>
+                    <f:facet name="input"><h:inputText value="#{regiao.nome}"/></f:facet>
+                </p:cellEditor>
             </p:column>
             <p:column headerText="Grau de risco" sortBy="#{regiao.nome}" filterBy="#{regiao.nome}" width="7%">
                 <h:outputText value="#{regiao.regiao_risco}"></h:outputText>

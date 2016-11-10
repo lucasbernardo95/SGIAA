@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import model.Usuario;
 import util.ErroSistema;
 import util.MessageUtil;
+import util.SessionUtil;
 
 /**
  *
@@ -21,6 +22,7 @@ public class UsuarioBean implements Serializable, CrudBean {
 
     private UsuarioDAO udao;
     private Usuario usuario;
+    private Usuario logado;
 
     public UsuarioDAO getDao() {
         if (udao == null) {
@@ -31,6 +33,7 @@ public class UsuarioBean implements Serializable, CrudBean {
 
     @PostConstruct
     public void init() {
+        logado = (Usuario) SessionUtil.getParamSession("usuario-logado");
         usuario = new Usuario();
     }
 
@@ -100,6 +103,11 @@ public class UsuarioBean implements Serializable, CrudBean {
             MessageUtil.MensagemErro("Erro ao tentar excluir.\nCausa: " + ex);
         }
     }
+    
+    public void alteraMeusDados(){
+        usuario = logado;
+        alterar();
+    }
 
     @Override
     public void buscar() {
@@ -109,5 +117,11 @@ public class UsuarioBean implements Serializable, CrudBean {
             MessageUtil.MensagemErro("Erro ao buscar os elementos no banco.");
         }
     }
+
+    public Usuario getLogado() {
+        return logado;
+    }
+    
+    
 
 }

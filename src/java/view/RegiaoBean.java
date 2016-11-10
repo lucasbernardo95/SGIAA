@@ -84,6 +84,7 @@ public class RegiaoBean implements Serializable, CrudBean {
         try {
             if (regiao != null) {
                 getDao().deletar(regiao);
+                buscar();//sempre que deletar alguma região, a busca deve ser refeita para atualizar a ista de regiões da tela
                 MessageUtil.MensagemSucesso("Excluído com sucesso.");
             }
         } catch (ErroSistema ex) {

@@ -10,42 +10,42 @@
         <h:outputStylesheet library="css" name="css.css"/>
     </h:head>
     <h:body >
-        <h:form>
+        <h:form id="fprincipal">
             <p:menubar >
                 <p:menuitem value="Bairros" url="bairro.xhtml" icon="fa fa-location-arrow" actionListener="#{graficoBean.init()}"></p:menuitem>
                 <p:menuitem value="Regiões" url="regiao.xhtml" icon="fa fa-map-marker" actionListener ="#{regiaoBean.buscar()}"></p:menuitem>
                 <p:menuitem value="Palhetas" url="palheta.xhtml" icon="fa fa-th" actionListener ="#{palhetaBean.buscar()}"></p:menuitem>               
-                <p:menuitem value="Meus dados" url="dados.xhtml" icon="fa fa-book"></p:menuitem>                
-                <p:menuitem value="Cadastrar usuários"  oncomplete="PF('cadastro').show();" />
-               
+                <p:menuitem value="Meus dados" oncomplete="PF('meusdados').show();" icon="fa fa-book"></p:menuitem>                
                 <p:menuitem value="Sair" action="#{validador.logout()}" icon="fa fa-user-times"  />
                 <p:menuitem value="Olá #{sessionScope['usuario-logado'].nome}" icon="fa fa-user"/>
             </p:menubar>
 
-            <p:dialog  id="cadastro" header="Cadastro de usuário" widgetVar="cadastro"
-                       height="30%" width="30%" resizable="false">
+            <p:dialog header="Escreva seu comentário" widgetVar="meusdados" 
+                      showEffect="explode" hideEffect="bounce" height="50%" 
+                      width="50%" resizable="false">
+
                 <p:panelGrid columns="2" >
-
                     <p:outputLabel value="Nome"/>
-                    <p:inputText value="#{usuarioBean.usuario.nome}"/>
-
-                    <p:outputLabel value="Login"/>
-                    <p:inputText value="#{usuarioBean.usuario.login}"/>
-
-                    <p:outputLabel value="Senha"/>
-                    <p:inputText maxlength="10" value="#{usuarioBean.usuario.senha}"/>
+                    <p:inputText value="#{usuarioBean.logado.nome}"/>
 
                     <p:outputLabel value="CPF"/>
-                    <p:inputMask mask="999.999.999-99" value="#{usuarioBean.usuario.cpf}"/>
+                    <p:inputMask mask="999.999.999-99" value="#{usuarioBean.logado.cpf}"/>
 
-                    <p:commandButton value="Salvar" action="#{usuarioBean.salvar()}" update=""/>
+                    <p:outputLabel value="Login"/>
+                    <p:inputText value="#{usuarioBean.logado.login}"/>
+
+                    <p:outputLabel value="Senha"/>
+                    <p:password value="#{usuarioBean.logado.senha}"/>
+
                     <p:outputLabel />
+                    <p:commandButton value="Cadastrar" action="#{usuarioBean.salvar()}" update="fprincipal"/>
                 </p:panelGrid>
             </p:dialog>
+
         </h:form>
         <hr/>
-          
-        
+
+
         <ui:insert></ui:insert>
     </h:body>
 </html>

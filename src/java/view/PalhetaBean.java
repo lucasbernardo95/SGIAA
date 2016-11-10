@@ -84,6 +84,7 @@ public class PalhetaBean implements Serializable, CrudBean {
         try {
             if (palheta != null) {
                 getDao().deletar(palheta);
+                buscar();
                 MessageUtil.MensagemSucesso("Excluído com sucesso.");
             }
         } catch (ErroSistema ex) {

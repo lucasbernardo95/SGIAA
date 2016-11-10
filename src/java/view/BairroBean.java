@@ -91,6 +91,7 @@ public class BairroBean implements Serializable, CrudBean {
         try {
             if (bairro != null) {
                 getDao().deletar(bairro);
+                buscar();
                 MessageUtil.MensagemSucesso("Excluído com sucesso.");
             }
         } catch (ErroSistema ex) {
