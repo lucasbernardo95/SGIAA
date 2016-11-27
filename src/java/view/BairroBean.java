@@ -1,6 +1,7 @@
 package view;
 
 import dao.BairroDAO;
+import dao.PalhetaDAO;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -8,7 +9,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
 import model.Bairro;
+import model.Palheta;
 import org.primefaces.event.RowEditEvent;
 import util.ErroSistema;
 import util.MessageUtil;
@@ -24,7 +27,9 @@ public class BairroBean implements Serializable, CrudBean {
     private BairroDAO bdao;
     private Bairro bairro;
     private List<Bairro> lista;
-
+    private List<Palheta> palhetas;
+    private PalhetaDAO pdao;
+    
     public BairroDAO getDao() {
         if (bdao == null) {
             bdao = new BairroDAO();
@@ -36,6 +41,7 @@ public class BairroBean implements Serializable, CrudBean {
     public void init() {
         bairro = new Bairro();
         buscar();
+        pdao = new PalhetaDAO();
     }
 
     public List<Bairro> getLista() {
@@ -44,6 +50,14 @@ public class BairroBean implements Serializable, CrudBean {
 
     public void setLista(List<Bairro> lista) {
         this.lista = lista;
+    }
+
+    public List<Palheta> getPalhetas() {
+        return palhetas;
+    }
+
+    public void setPalhetas(List<Palheta> palhetas) {
+        this.palhetas = palhetas;
     }
 
     @Override
@@ -120,6 +134,11 @@ public class BairroBean implements Serializable, CrudBean {
 
     public void setBairro(Bairro bairro) {
         this.bairro = bairro;
+    }
+    
+    public void carregaPalhetasBairroEscolhido(ActionEvent evento){
+        Bairro b = (Bairro) evento.getComponent().getAttributes().get("bairroEscolhido");
+        palhetas = pdao.buscarPalhetaPorBairro(b.getId());//busca todas as palhetas do bairro
     }
     
 }

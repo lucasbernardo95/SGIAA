@@ -13,15 +13,14 @@
         <h:form id="fprincipal">
             <p:menubar >
                 <p:menuitem value="Bairros" url="bairro.xhtml" icon="fa fa-location-arrow" actionListener="#{graficoBean.init()}"></p:menuitem>
-                <p:menuitem value="Regiões" url="regiao.xhtml" icon="fa fa-map-marker" actionListener ="#{regiaoBean.buscar()}"></p:menuitem>
                 <p:menuitem value="Palhetas" url="palheta.xhtml" icon="fa fa-th" actionListener ="#{palhetaBean.buscar()}"></p:menuitem>               
                 <p:menuitem value="Meus dados" oncomplete="PF('meusdados').show();" icon="fa fa-book"></p:menuitem>                
                 <p:menuitem value="Sair" action="#{validador.logout()}" icon="fa fa-user-times"  />
                 <p:menuitem value="Olá #{sessionScope['usuario-logado'].nome}" icon="fa fa-user"/>
             </p:menubar>
 
-            <p:dialog header="Escreva seu comentário" widgetVar="meusdados" 
-                      showEffect="explode" hideEffect="bounce" height="50%" 
+            <p:dialog header="Meus dados" widgetVar="meusdados" 
+                       hideEffect="bounce" height="50%" 
                       width="50%" resizable="false">
 
                 <p:panelGrid columns="2" >

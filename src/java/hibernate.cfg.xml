@@ -27,7 +27,6 @@
     <mapping class="model.Usuario"/>
     <mapping class="model.Bairro"/>
     <mapping class="model.Palheta"/>
-    <mapping class="model.Regiao"/>
    
   </session-factory>
 </hibernate-configuration>

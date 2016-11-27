@@ -8,11 +8,6 @@
              template="template.xhtml">
     <h:form id="fbairro">
         <p:growl autoUpdate="true" />
-        <p:dock position="bottom">   
-            <p:menuitem value="Login" icon="/resources/img/home.png"  url="#"/>
-            <p:menuitem value="Buscar" icon="/resources/img/search.png"  url="#"/>
-            <p:menuitem value="Zonas de risco" icon="/resources/img/radar.png"  url="#"/>
-        </p:dock>
 
         <p:dataTable value="#{bairroBean.lista}" var="bairro" id="bairros" widgetVar="cellUsuario"
                      paginator="true" rows="10" editable="true" paginatorPosition="top">
@@ -24,32 +19,29 @@
             <p:ajax event="rowEdit" listener="#{bairroBean.atualizar}" update="fbairro bairros "/>
             <p:ajax event="rowEditCancel" listener="#{bairroBean.cancelar}" update="fbairro bairros "/>
 
-           
-            <p:column headerText="Nome" sortBy="#{bairro.nome}" filterBy="#{bairro.nome}" width="7%">
-                <h:outputText value="#{bairro.nome}"></h:outputText>
-            </p:column>
-             <p:column headerText="Opções" width="7%">
-                 <p:commandButton  value="Ver Gráfico" actionListener="#{graficoBean.mostraBairroPorRisco}" 
-                                 oncomplete="PF('diagrisco').show();"
+            <p:column headerText="Opções" width="3%">
+                <p:commandButton  title="Ver lista de palhetas" icon="fa fa-outdent" actionListener="#{bairroBean.carregaPalhetasBairroEscolhido}" 
+                                 oncomplete="PF('palhetas').show();"
                                  update="fbairro">
                     <f:attribute name="bairroEscolhido" value="#{bairro}" />
                 </p:commandButton>
                  
-                 <p:rowEditor style="float: left;" />
-                 <p:commandButton value="Excluir" actionListener="#{bairroBean.excluir()}" update="fbairro bairros"/>
+                 <p:rowEditor style="float: left;" editTitle="Editar" cancelTitle="Cancelar" saveTitle="Salvar" />
+                 <p:commandButton icon="fa fa-trash" title="Excluir" actionListener="#{bairroBean.excluir()}" update="fbairro bairros"/>
+            </p:column>           
+            <p:column headerText="Nome" sortBy="#{bairro.nome}" filterBy="#{bairro.nome}" width="7%">
+                <h:outputText value="#{bairro.nome}"></h:outputText>
             </p:column>
-            <p:column headerText="Total_ovos" sortBy="#{bairro.total_ovos}" filterBy="#{bairro.total_ovos}" width="7%">
+
+            <p:column headerText="Total de ovos" sortBy="#{bairro.total_ovos}" filterBy="#{bairro.total_ovos}" width="5%">
                 <h:outputText value="#{bairro.total_ovos}"></h:outputText>
             </p:column>
-            <p:column headerText="Total_larvas" sortBy="#{bairro.total_larvas}" filterBy="#{bairro.total_larvas}" width="7%">
+            <p:column headerText="Total de larvas" sortBy="#{bairro.total_larvas}" filterBy="#{bairro.total_larvas}" width="5%">
                 <h:outputText value="#{bairro.total_larvas}"></h:outputText>
             </p:column>
-            <p:column headerText="Taxa_eclusao" sortBy="#{bairro.taxa_eclosao}" filterBy="#{bairro.taxa_eclosao}" width="7%">
+            <p:column headerText="Taxa de eclusao" sortBy="#{bairro.taxa_eclosao}" filterBy="#{bairro.taxa_eclosao}" width="5%">
                 <h:outputText value="#{bairro.taxa_eclosao}"></h:outputText>
             </p:column>            
-            <p:column headerText="Bairro_risco" sortBy="#{bairro.bairro_risco}" filterBy="#{bairro.bairro_risco}" width="7%">
-                <h:outputText value="#{bairro.bairro_risco}"></h:outputText>
-            </p:column>
 
         </p:dataTable>
         
@@ -63,22 +55,60 @@
                 <p:outputLabel value="Total larvas"/>
                 <p:inputNumber value="#{bairroBean.bairro.total_larvas}"/>
                 <p:outputLabel value="Taxa de eclusão"/>
-                <p:inputNumber value="#{bairroBean.bairro.taxa_eclosao}"/>
-                <p:outputLabel value="Risco do bairro"/>
-                <p:inputNumber value="#{bairroBean.bairro.bairro_risco}"/>                
+                <p:inputNumber value="#{bairroBean.bairro.taxa_eclosao}"/>                
                 <p:commandButton value="Salvar" actionListener="#{bairroBean.salvar()}" update="bairros" />
             </p:panelGrid>
         </p:dialog>
         
-        
-        
-        
-        
-        <p:dialog header="Grau de risco" widgetVar="diagrisco" showEffect="explode" 
-                  height="50%" width="50%" resizable="false">
+        <p:dialog header="Palhetas" widgetVar="palhetas" showEffect="explode" 
+                  resizable="false">
 
-            <p:chart type="metergauge" model="#{graficoBean.meterGaugeMode}" style="width:400px;height:250px" rendered="#{graficoBean.meterGaugeMode ne null}"/>
-            <p:commandButton value="Fechar" oncomplete="PF('diagrisco').hide();" update="fbairro" />
+            <p:dataTable value="#{bairroBean.palhetas}" var="palheta" id="palhetas" widgetVar="cellUsuario"
+                         paginator="true" rows="10" editable="true" paginatorPosition="top" >
+
+                <p:column headerText="Código" sortBy="#{palheta.id}" filterBy="#{palheta.id}" width="7%">
+                    <h:outputText value="#{palheta.id}"/> 
+                </p:column>
+                <p:column headerText="Coordenada X" sortBy="#{palheta.coordenada_x}" filterBy="#{palheta.coordenada_x}" width="7%">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{palheta.coordenada_x}"/> </f:facet>
+                        <f:facet name="input"><h:inputText value="#{palheta.coordenada_x}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Coordenada Y" sortBy="#{palheta.coordenada_x}" filterBy="#{palheta.coordenada_x}" width="7%">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{palheta.coordenada_x}"/> </f:facet>
+                        <f:facet name="input"><h:inputText value="#{palheta.coordenada_x}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Índice de eclosão" sortBy="#{palheta.eclosao_palheta}" resizable="true" filterBy="#{palheta.eclosao_palheta}" width="7%">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{palheta.eclosao_palheta}"/> </f:facet>
+                        <f:facet name="input"><h:inputText value="#{palheta.eclosao_palheta}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="IDO" sortBy="#{palheta.ido}" filterBy="#{palheta.ido}" width="5%">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{palheta.ido}"/> </f:facet>
+                        <f:facet name="input"><h:inputText value="#{palheta.ido}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="IPO" sortBy="#{palheta.ipo}" filterBy="#{palheta.ipo}" width="5%">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{palheta.ipo}"/> </f:facet>
+                        <f:facet name="input"><h:inputText value="#{palheta.ipo}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Quantidade de ovos" sortBy="#{palheta.ovos_palheta}" filterBy="#{palheta.ovos_palheta}" width="7%">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{palheta.ovos_palheta}"/> </f:facet>
+                        <f:facet name="input"><h:inputText value="#{palheta.ovos_palheta}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Risco" sortBy="#{palheta.risco}" filterBy="#{palheta.risco}" width="5%">
+                    <h:outputText value="#{palheta.risco}"/> 
+                </p:column>
+            </p:dataTable>
         </p:dialog>
     </h:form>
 

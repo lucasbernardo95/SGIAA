@@ -1,11 +1,16 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,36 +24,55 @@ public class Palheta implements Serializable {
     
     @Id
     @GeneratedValue
+    @Column(name = "idPalheta")
     private Integer id;
     
     @Column(name="coordenada_x",length=10,nullable=false)    
-    private int coordenada_x ;
+    private double coordenada_x ;
     
     @Column(name="coordenada_y",length=10,nullable=false)
-    private int coordenada_y ;
+    private double coordenada_y ;
     
     @Column(name="ovos_palheta",length=5,nullable=false)
     private int ovos_palheta ;
     
     @Column(name="eclosao_palheta",length=5,nullable=false)
-    private int eclosao_palheta;
+    private double eclosao_palheta;
     
     @Column(name="ipo",length=5,nullable=false)
     private double ipo;
     
     @Column(name="ido",length=5,nullable=false)
     private double ido;
+    
+    @Column(name="risco",length=5,nullable=false)
+    private String risco;
+    
+    //@Column(name="bairro",length=20,nullable=false)
+    @ManyToOne
+    @JoinColumn(name = "idBairro")
+    private Bairro bairro;
 
-    public Palheta(int coordenada_x, int coordenada_y, int ovos_palheta, int eclosao_palheta, double ipo, double ido) {
+    public Palheta(double coordenada_x, double coordenada_y, int ovos_palheta, double eclosao_palheta, double ipo, double ido, String risco, Bairro bairro) {
         this.coordenada_x = coordenada_x;
         this.coordenada_y = coordenada_y;
         this.ovos_palheta = ovos_palheta;
         this.eclosao_palheta = eclosao_palheta;
         this.ipo = ipo;
         this.ido = ido;
+        this.risco = risco;
+        this.bairro = bairro;
     }
 
     public Palheta() {
+    }
+
+    public Bairro getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(Bairro bairro) {
+        this.bairro = bairro;
     }
 
     public Integer getId() {
@@ -59,19 +83,19 @@ public class Palheta implements Serializable {
         this.id = id;
     }
 
-    public int getCoordenada_x() {
+    public double getCoordenada_x() {
         return coordenada_x;
     }
 
-    public void setCoordenada_x(int coordenada_x) {
+    public void setCoordenada_x(double coordenada_x) {
         this.coordenada_x = coordenada_x;
     }
 
-    public int getCoordenada_y() {
+    public double getCoordenada_y() {
         return coordenada_y;
     }
 
-    public void setCoordenada_y(int coordenada_y) {
+    public void setCoordenada_y(double coordenada_y) {
         this.coordenada_y = coordenada_y;
     }
 
@@ -83,11 +107,11 @@ public class Palheta implements Serializable {
         this.ovos_palheta = ovos_palheta;
     }
 
-    public int getEclosao_palheta() {
+    public double getEclosao_palheta() {
         return eclosao_palheta;
     }
 
-    public void setEclosao_palheta(int eclosao_palheta) {
+    public void setEclosao_palheta(double eclosao_palheta) {
         this.eclosao_palheta = eclosao_palheta;
     }
 
@@ -107,7 +131,13 @@ public class Palheta implements Serializable {
         this.ido = ido;
     }
 
-  
+    public String getRisco() {
+        return risco;
+    }
+
+    public void setRisco(String risco) {
+        this.risco = risco;
+    }
 
     @Override
     public int hashCode() {

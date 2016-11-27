@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +29,7 @@ public class Bairro implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="idBairro")
     private Integer id;
     
     @Column(name="nome",length=25,nullable=false)    
@@ -45,16 +47,12 @@ public class Bairro implements Serializable {
     @Column(name="lista_palheta",length=20,nullable=false)
     @OneToMany
     private List<Palheta> listaPalheta;
-    
-    @Column(name="bairro_risco",length=5,nullable=false)
-    private int bairro_risco;
 
-    public Bairro(String nome, int total_ovos, int total_larvas, float taxa_eclosao, int bairro_risco) {
+    public Bairro(String nome, int total_ovos, int total_larvas, float taxa_eclosao) {
         this.nome = nome;
         this.total_ovos = total_ovos;
         this.total_larvas = total_larvas;
         this.taxa_eclosao = taxa_eclosao;
-        this.bairro_risco = bairro_risco;
     }
     
     public Bairro() {
@@ -107,17 +105,6 @@ public class Bairro implements Serializable {
     public void setListaPalheta(List<Palheta> listaPalheta) {
         this.listaPalheta = listaPalheta;
     }
-
-    public int getBairro_risco() {
-        return bairro_risco;
-    }
-
-    public void setBairro_risco(int bairro_risco) {
-        this.bairro_risco = bairro_risco;
-    }
-
-   
-
 
     @Override
     public int hashCode() {
